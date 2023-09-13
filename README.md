@@ -202,8 +202,8 @@ Saya menggunakan perintah tersebut, karena saya menjalankannya di windows.
    `urls.py`
  + `urls.py` akan mengarahkan request ke View sesuai url yang diterima
  + View dapat berinteraksi dengan model yang merupakan komponen yang bertanggung jawab terhadap database
- + Setalah mendapatkan data dari model, maka View akan menampilkannya ke Template HTML, kemudian akan dikembalikan lagi ke View dan View akan 
-   menghasilkan respon HTTP yang akan dikirim kembali ke klien.
+ + Setelah mendapatkan data dari model, maka View akan merender Template HTML dan diisi dengan data yang sesuai
+ + View akan menghasilkan respons HTTP dan dikirimkan kembali ke klien
  + Klien menerima respon dan menampilkan halaman web atau data yang diberikan.
  + Klien (browser) menampilkan halaman atau data kepada pengguna.
 
