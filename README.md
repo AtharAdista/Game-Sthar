@@ -7,12 +7,163 @@
 ---
 ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
 
-<p>as<p>
+**Membuat sebuah proyek Django baru**
+
++ Buat direktori baru dengan nama `game_sthar`.
++ Terus, saya membuat _virtual environment_ dengan menjalankan perintah .
+
+ ```
+python -m venv env
+ ```
++ _virtual environment_ yang telah saya buat tadi berfungsi agar lingkungan kerja kita terisolasi sehingga __package__ serta __dependencies__ tidak akan bertabrakana dengan versi lain yang ada di komputer saya. Cara mengaktifkan __virtual environment__ adalah dengan menjalankan perintah.
+
+```
+env\Scripts\activate.bat
+```
+
+Saya menggunakan perintah tersebut, karena saya menjalankannya di windows.
+
++ Selanjutnya saya membuat file `requirements.txt` di directory tadi, dan saya menambahkan beberapa __dependecies__ di dalamnya. Tujuannya adalah agar saya dapat menginstall __dependecies__ yang saya butuhkan di project ini.
+
+```
+django
+gunicorn
+whitenoise
+psycopg2-binary
+requests
+urllib3
+```
+
++ Setelah itu, saya menjalankan perintah berikut untuk menginstall semua __dependecies__ yang ada di `requirements.txt`. Saya menginstall __dependecies__ ini di __virtual env__ yang telah saya buat tadi.
+
+```
+pip install -r requirements.txt
+
+```
+
++ Kemudian saya membuat project django yang bernama `game_sthar` dengan perintah berikut.
+
+```
+django-admin startproject game_sthar .
+
+```
+
+
++ Setelah terbentuk folder `game_sthar`, kemudian saya mencari file `settings.py` dan menambahkan `*` pada `ALLOWED_HOSTS`. Ini bertujuan agar kita mengizinkan akses dari semua host, yang akan membuat aplikasi dapat diakses secara luas.
+
++ Kemudian, saya menginisiasi direktori `game_sthar` sebagai repo github dengan cara `git init`.
+
++ Lalu, saya menambahkan `.gitignore` di dalam direktori tadi.
+
+
+**Membuat aplikasi dengan nama `main` pada proyek tersebut**
+
++ Di proyek game sthar saya membuat aplikasi baru bernama `main` dengan cara menjalankan perintah berikut.
+```
+python manage.py startapp main
+```
+
++ Kemudian saya akan menambahkan aplikasi `main` ke dalam proyek game sthar dengan cara membuat berkas `setting.py` yang ada di dalam direktori `game_sthar`, kemudian pada `INSTALLED_APPS` saya akan menambahkan `main`.
+
++ Dalam direktori `main` saya membuat direktori baru yang bernama `templates` dan membuat file `main.html` di dalam direktori `templates`, Isi dari main dalah dilihat di [sini](https://github.com/AtharAdista/game-sthar/blob/main/main/templates/main.html)
+
+**Membuat aplikasi dengan nama `main` pada proyek tersebut**
+
++ Buka berkas `urls.py` yang ada di dalam direktori `game_sthar` lalu import fungsi `include` dari `django.urls` dan tambahakn rute URL untuk mengarahkan ke `main` di `urlpatterns`
+
+```
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('main/', include('main.urls')),
+]
+```
+
+**Membuat model pada aplikasi main dengan nama Item dan memiliki atribut wajib.**
+
+ + Saya membuat file `models.py` yang ada di direktori `main` untuk membuat model baru.
+   - Saya mengisi file `models.py` sebagai berikut.
+     ```
+     from django.db import models
+     class Product(models.Model):
+        name = models.CharField(max_length=255)
+        data_added = models.DateField(auto_now_add=True)
+        amount = models.IntegerField()
+        description = models.TextField()
+        price = models.IntegerField()
+        category = models.TextField()
+        platform = models.TextField()
+
+     ```
++ Kemudian saya melakukan perintah `makemigrations` untuk membuat migrasi model dan `migrate` untuk menerapkan migrasi ke dalam basis data.
+```
+python manage.py makemigrations
+python manage.py migrate
+
+```
+
+**Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.**
+
++ Buka file `views.py` yang ada di dalam folder `main`. kemudian tambahkan baris impor `from django.shortcuts import render`. 
++ Lalu tambahkan fungsi `show_main` seperti di bawah ini.
+
+```
+from django.shortcuts import render
+
+def show_main(request):
+    context = {
+        'name' : 'Shaquille Athar Adista',
+        'class' : 'PBP A',
+
+    }
+
+    return render(request, "main.html", context)
+```
+
+**Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.**
+
++ Lakukan git add, commit, dan push sebelum mendeploy web kita.
++ Buka web **Adaptable** dan sign-in.
++ pilih `New App`. Pilih `Connect an Existiting Repository`. Lalu hubungkan semua repositori kita dengan Adaptable.io pada proses instalasi.
++ pilih repositori `game_sthar` dan pilih branch yang mau kita deploy.
++ pilih `python App Template`, kemudian pilih `PostgreSQL`.
++ pada bagian `version`, sesuaikan dengan versi python kita dan pada bagian `Start Command` masukkan perintah `python manage.py migrate && gunicorn game_sthar.wsgi`.
++ pilih nama domain yang kita mau dan centang bagian `HTTP Listener on PORT` dan deploy app.
+
+ **BONUS**
+
+ - Saya juga menambahkan unit test
+ ```
+from django.test import TestCase
+from .models import Product
+
+class mainTest(TestCase):
+    def setUp(self):
+        self.data= Product.objects.create(
+            name = "Fifa 23",
+            price = 40000,
+            amount = 20,
+            category = "Sport",
+            platform = "PC, Nitendo Switch, Xbox X|S, Xbox One, Playstation 4",
+            description = "The game offers revamped Career Mode, FIFA Ultimate Team (FUT), and the return of Volta Football for a diverse gaming experience.",
+
+        ) 
+    
+    def test_product(self):
+        self.assertEqual(self.data.name, "Fifa 23")
+        self.assertEqual(self.data.price, 40000)
+        self.assertEqual(self.data.amount, 20)
+        self.assertEqual(self.data.category, "Sport")
+        self.assertEqual(self.data.platform, "PC, Nitendo Switch, Xbox X|S, Xbox One, Playstation 4")
+        self.assertEqual(self.data.description, "The game offers revamped Career Mode, FIFA Ultimate Team (FUT), and the return of Volta Football for a diverse gaming experience.")   
+ ```
 
 ---
 ## 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html. 
 
-<p>as<p>
+![MVT](https://github.com/AtharAdista/game-sthar/blob/main/MVT_ShaquilleAtharAdista.png)
 
 ---
 ## 3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
