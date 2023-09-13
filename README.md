@@ -134,7 +134,7 @@ Saya menggunakan perintah tersebut, karena saya menjalankannya di windows.
  **BONUS**
 
  - Saya juga menambahkan unit test
-   ```
+  ```
   from django.test import TestCase, Client
   from .models import Product
 
@@ -189,7 +189,7 @@ Saya menggunakan perintah tersebut, karena saya menjalankannya di windows.
           self.assertIn("platform", context)
           self.assertIn("description", context)
 
-   ```
+  ```
 
 ---
 ## 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html. 
