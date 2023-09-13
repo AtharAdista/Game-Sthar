@@ -200,16 +200,12 @@ Saya menggunakan perintah tersebut, karena saya menjalankannya di windows.
  + Klien(browser) mengirim permintaan HTTP ke Django
  + Django menerima permintaan dan menyampaikannya ke 
    `urls.py`
- + `urls.py` akan mengarahkan request ke view sesuai 
-    url yang diterima
- + View dapat berinteraksi dengan model yang 
-   merupakan komponen yang bertanggung jawab terhadap database
- + Setalah mendapatkan data dari model, maka view 
-   akan menampilkannya ke template HTML, kemudian akan dikembalikan lagi ke view dan view akan menghasilkan respon HTTP yang akan dikirim kembali ke klien.
- + Klien menerima respon dan menampilkan halaman web 
-   atau data yang diberikan dalam browser.
- + Klien (browser) menampilkan halaman atau data 
-   kepada pengguna.
+ + `urls.py` akan mengarahkan request ke View sesuai url yang diterima
+ + View dapat berinteraksi dengan model yang merupakan komponen yang bertanggung jawab terhadap database
+ + Setalah mendapatkan data dari model, maka View akan menampilkannya ke Template HTML, kemudian akan dikembalikan lagi ke View dan View akan 
+   menghasilkan respon HTTP yang akan dikirim kembali ke klien.
+ + Klien menerima respon dan menampilkan halaman web atau data yang diberikan.
+ + Klien (browser) menampilkan halaman atau data kepada pengguna.
 
 ---
 ## 3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
@@ -249,15 +245,19 @@ MVVM adalah pola desain software yang membagi kode aplikasi ke dalam tiga lapisa
      penghubung keduanya. Viewmodel mendapatkan input dari view mengenai aktivitas pengguna, dan melakukan data binding 2 arah (2-way data binding). Data binding adalah proses mengikat dua  data sumber bersama dan menyinkronkan keduanya. Perubahan pada elemen dalam kumpulan data secara otomatis diperbarui dalam kumpulan data terikat, dan menentukan fungsi UI. Setelah mendapatkan data, viewmodel meneruskannya ke layer model untuk dimanipulasi dan disimpan. Perubahan status yang terjadi selama proses tersebut akan diumumkan melalui notifikasi perubahan.
 
 **Perbedaan MVC, MVT, dan MVVM**
-- MVC menggunakan Controller sebagai penghubung antara Model dan View. MVT menggunakan view untuk menerima http request dan mengembalikan HTTP request yang telah diterima (menghubungkan  
-      model dan template). MVVM menggunakan ViewModel sebagai penghubung anatara Model dan View melalui binding
-- MVC menggunakan View untuk menampilkan desain dan data kepada user. MVT menggunakan Template untuk menampilkan desain dan data kepada user. MVVM menggunakan view untuk menampilkan  
-      tampilan yang dilihat user 
-- MVC cocok digunakan pada aplikasi dengan kompleksitas yang tinggi dan interaksi pengguna yang rumit. MVT cocok digunakan untuk aplikasi kecil dan besar. MVVM cocok digunakan untuk  
-      aplikasi dengan tampilan yang kompleks dan dipengaruhi oleh banyak perubahan data.
-- MVC modifikasi dapat sulit tergantung pada bagaimana aplikasi dirancang. MVT modifikasi umumnya dianggap mudah karena pemisahan yang kuat antara Model, View, dan Template. MVVM modifikasi 
-      dapat lebih mudah jika pengikatan data (data binding) diatur dengan baik.
-- MVC hubungan erat (sangat berpasangan) antara Model, View, dan Controller. MVT hubungan yang lebih longar antara Model, View, dan Template. MVVM hubungan yang kuat antara View dan 
-      ViewModel.
+- MVC menggunakan Controller sebagai penghubung antara Model dan View. MVT menggunakan View untuk menerima http request dan mengembalikan HTTP  
+  request yang telah diterima (menghubungkan Model dan Template). MVVM menggunakan ViewModel sebagai penghubung anatara Model dan View melalui binding
+- MVC menggunakan View untuk menampilkan desain dan data kepada user. MVT menggunakan Template untuk menampilkan desain dan data kepada user. MVVM 
+  menggunakan View untuk menampilkan tampilan yang dilihat user 
+- MVC cocok digunakan pada aplikasi dengan kompleksitas yang tinggi dan interaksi pengguna yang rumit. MVT cocok digunakan untuk aplikasi kecil 
+  dan besar. MVVM cocok digunakan untuk aplikasi dengan tampilan yang kompleks dan dipengaruhi oleh banyak perubahan data.
+- MVC modifikasi dapat sulit tergantung pada bagaimana aplikasi dirancang. MVT modifikasi umumnya dianggap mudah karena pemisahan yang kuat antara 
+  Model, View, dan Template. MVVM modifikasi dapat lebih mudah jika pengikatan data (data binding) diatur dengan baik.
+- MVC hubungan erat (sangat berpasangan) antara Model, View, dan Controller. MVT hubungan yang lebih longar antara Model, View, dan Template. MVVM 
+  hubungan yang kuat antara View dan ViewModel.
 - MVC digunakan oleh Java, Spring. MVT digunakan oleh Django. MVVM digunakan oleh Microsoft APF, Angular JS
     
+Sumber : 
++ https://www.niagahoster.co.id/blog/mvc-adalah/
++ https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/
++ https://revou.co/kosakata/mvvm
