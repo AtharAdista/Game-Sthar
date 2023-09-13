@@ -66,7 +66,7 @@ Saya menggunakan perintah tersebut, karena saya menjalankannya di windows.
 
 + Dalam direktori `main` saya membuat direktori baru yang bernama `templates` dan membuat file `main.html` di dalam direktori `templates`, Isi dari main dalah dilihat di [sini](https://github.com/AtharAdista/game-sthar/blob/main/main/templates/main.html)
 
-**Membuat aplikasi dengan nama `main` pada proyek tersebut**
+**Melakukan routing pada proyek agar dapat menjalankan aplikasi main.**
 
 + Buka berkas `urls.py` yang ada di dalam direktori `game_sthar` lalu import fungsi `include` dari `django.urls` dan tambahakn rute URL untuk mengarahkan ke `main` di `urlpatterns`
 
@@ -194,7 +194,22 @@ Saya menggunakan perintah tersebut, karena saya menjalankannya di windows.
 ---
 ## 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html. 
 
-![MVT architecture](https://github.com/AtharAdista/game-sthar/blob/main/MyModelMVT.png)
+![MVT architecture](https://github.com/AtharAdista/game-sthar/blob/main/Model.png)
+
+ + User akan menuliskan sesuatu di browser
+ + Klien(browser) mengirim permintaan HTTP ke Django
+ + Django menerima permintaan dan menyampaikannya ke 
+   `urls.py`
+ + `urls.py` akan mengarahkan request ke view sesuai 
+    url yang diterima
+ + View dapat berinteraksi dengan model yang 
+   merupakan komponen yang bertanggung jawab terhadap database
+ + Setalah mendapatkan data dari model, maka view 
+   akan menampilkannya ke template HTML, kemudian akan dikembalikan lagi ke view dan view akan menghasilkan respon HTTP yang akan dikirim kembali ke klien.
+ + Klien menerima respon dan menampilkan halaman web 
+   atau data yang diberikan dalam browser.
+ + Klien (browser) menampilkan halaman atau data 
+   kepada pengguna.
 
 ---
 ## 3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
