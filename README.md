@@ -15,7 +15,7 @@
   ```
   python -m venv env
   ```
-+ _virtual environment_ yang telah saya buat tadi berfungsi agar lingkungan kerja kita terisolasi sehingga __package__ serta __dependencies__ tidak akan bertabrakana dengan versi lain yang ada di komputer saya. Cara mengaktifkan __virtual environment__ adalah dengan menjalankan perintah.
++ _virtual environment_ yang telah saya buat tadi berfungsi agar lingkungan kerja kita terisolasi sehingga __package__ serta __dependencies__ tidak akan bertabrakan dengan versi lain yang ada di komputer saya. Cara mengaktifkan __virtual environment__ adalah dengan menjalankan perintah.
 
   ```
   env\Scripts\activate.bat
@@ -68,7 +68,7 @@ Saya menggunakan perintah tersebut, karena saya menjalankannya di windows.
 
 **Melakukan routing pada proyek agar dapat menjalankan aplikasi main.**
 
-+ Buka berkas `urls.py` yang ada di dalam direktori `game_sthar` lalu import fungsi `include` dari `django.urls` dan tambahakn rute URL untuk mengarahkan ke `main` di `urlpatterns`
++ Buka berkas `urls.py` yang ada di dalam direktori `game_sthar` lalu import fungsi `include` dari `django.urls` dan tambahkan rute URL untuk mengarahkan ke `main` di `urlpatterns`
 
   ```
   from django.contrib import admin
@@ -222,27 +222,27 @@ MVC adalah sebuah cara dalam membuat aplikasi atau website dengan memisahkan mas
   - View, merupakan bagian yang menampilkan desain tampilan dan juga informasi(data) kepada user atau pengguna (end user)
   - Controller, merupakan bagian yang menghubungkan model dan view pada setiap proses dan request dari user.  
 
-  Dengan konsep model view controller, website sendiri terdiri dari masing-masing bagian yang terpisah sehingga, memudahkan dalam mengembangkan dan pengerjaan. Proses pengerjaan aplikasi atau 
+  Dengan konsep model view controller, website sendiri terdiri dari masing-masing bagian yang terpisah sehingga memudahkan dalam mengembangkan dan pengerjaan. Proses pengerjaan aplikasi atau 
   website pun dapat dilakukan dengan cepat karena tim developer dapat lebih fokus ke salah satu bagiannya saja dari model, view, dan controller. Konsep MVC ini sudah diterapkan di berbagai framework PHP, Laravel, CodeIgniter, YII, Symfony, Yii, dan Zend.  
 
 ### MVT (Model View Template) 
 
-MVT adalah sebuah pola desain arsitektur website yang terbagi menjadi tiga lapisan, yakni model, view, dan template. Konsep ini diyakini bisa mempercepat proses   pembuatan website. Dengan konsep MVT ini, developer dapat mengorganisasi memisahkan dan komponen-komponen utama dalam aplikasi web. Beikut adalah penjelasan masing-masing bagian.
-   - Model, merupakan bagian yang merepresentasi data dari aplikasi yang dibuat. Model adalah bagian yang berinteraksi dengan database dan mengelola data aplikasi. Model mendefinisikan       
-      struktur dan hubungan data. 
-   - View, bertanggung jawab untuk menangani logika bisnis dan tampilan dalam aplikasi. View berguna untuk mengtroller bagaimana data yang dikelola oleh model akan ditampilkan kepada 
-      pengguna. Dalam MVT, view berperan sebagai pengatur tampilan dan mengambil data dari model untuk disajikan kepada pengguna. Dalam Django view dapat berupa fungsi atau kelas.
-   - Template, komponen yang digunakan untuk merancang tampilan atau antarmuka pengguna. Template memisahkan tampilan (kode HTML) dengan logika aplikasi. Dalam MVT, template digunakan untuk  
-      merancang tampilan yang akhirnya akan diisi dengan data dari model melalui view. 
+MVT adalah sebuah pola desain arsitektur website yang terbagi menjadi tiga lapisan, yakni model, view, dan template. Konsep ini diyakini bisa mempercepat proses pembuatan website. Dengan konsep MVT ini, developer dapat mengorganisasi dan memisahkan komponen-komponen utama dalam aplikasi web. Berikut adalah penjelasan masing-masing bagian.
+   - Model, merupakan bagian yang merepresentasi data dari aplikasi yang dibuat. Model adalah bagian yang berinteraksi dengan database dan  
+     mengelola data aplikasi. Model mendefinisikan struktur dan hubungan data. 
+   - View, bertanggung jawab untuk menangani logika bisnis dan tampilan dalam aplikasi. View berguna untuk mengotrol bagaimana data yang dikelola 
+     oleh model akan ditampilkan kepada pengguna. Dalam MVT, view berperan sebagai pengatur tampilan dan mengambil data dari model untuk disajikan kepada pengguna. Dalam Django view dapat berupa fungsi atau kelas.
+   - Template, komponen yang digunakan untuk merancang tampilan atau antarmuka pengguna. Template memisahkan tampilan (kode HTML) dengan logika 
+     aplikasi. Dalam MVT, template digunakan untuk merancang tampilan yang akhirnya akan diisi dengan data dari model melalui view. 
     
 ### MVVM (Model View ViewModul) 
 
 MVVM adalah pola desain software yang membagi kode aplikasi ke dalam tiga lapisan, yaitu modul, view, dan viewmodul. Tujuan penggunaan MVVM sendiri adalah menjaga  kode UI agar tetap sederhana dan tanpa mengandung app logic agar mudah untuk dikelola.
    - Model merupakan tempat untuk logika bisnis dan data aplikasi, yang didapatkan dari viewmodel setelah menerima input pengguna melalui view. 
-   - View bertanggung jawab menentukan struktur, tata letak, teks, gambar, dan elemen antarmuka lainnya yang nantinya dilihat oleh pengguna. Seluruh elemen tersebut ditulis dalam bahasa XML  
-     dengan kode yang terbatas. Tujuan dari view adalah menginformasikan viewmodel apa yang dilakukan oleh pengguna. Layer ini tidak mengandung logika aplikasi apapun. Namun dalam beberapa kasus, view bisa berisi logika UI yang mengimplementasikan perilaku visual yang sulit diekspresikan dalam XML, seperti animasi.
-   - ViewModel adalah layer yang berinteraksi langsung dengan Model, serta menyajikan data untuk View layer. Layer viewmodel berada di antara layer view dan model, dan berfungsi sebagai   
-     penghubung keduanya. Viewmodel mendapatkan input dari view mengenai aktivitas pengguna, dan melakukan data binding 2 arah (2-way data binding). Data binding adalah proses mengikat dua  data sumber bersama dan menyinkronkan keduanya. Perubahan pada elemen dalam kumpulan data secara otomatis diperbarui dalam kumpulan data terikat, dan menentukan fungsi UI. Setelah mendapatkan data, viewmodel meneruskannya ke layer model untuk dimanipulasi dan disimpan. Perubahan status yang terjadi selama proses tersebut akan diumumkan melalui notifikasi perubahan.
+   - View bertanggung jawab menentukan struktur, tata letak, teks, gambar, dan elemen antarmuka lainnya yang nantinya dilihat oleh pengguna.
+     Seluruh elemen tersebut ditulis dalam bahasa XML dengan kode yang terbatas. Tujuan dari view adalah menginformasikan viewmodel apa yang dilakukan oleh pengguna. Layer ini tidak mengandung logika aplikasi apapun. Namun dalam beberapa kasus, view bisa berisi logika UI yang mengimplementasikan perilaku visual yang sulit diekspresikan dalam XML, seperti animasi.
+   - ViewModel adalah layer yang berinteraksi langsung dengan Model, serta menyajikan data untuk View layer. Layer viewmodel berada di antara 
+     layer view dan model, dan berfungsi sebagai penghubung keduanya. Viewmodel mendapatkan input dari view mengenai aktivitas pengguna, dan melakukan data binding 2 arah (2-way data binding). Data binding adalah proses mengikat dua  data sumber bersama dan menyinkronkan keduanya. Perubahan pada elemen dalam kumpulan data secara otomatis diperbarui dalam kumpulan data terikat, dan menentukan fungsi UI. Setelah mendapatkan data, viewmodel meneruskannya ke layer model untuk dimanipulasi dan disimpan. Perubahan status yang terjadi selama proses tersebut akan diumumkan melalui notifikasi perubahan.
 
 **Perbedaan MVC, MVT, dan MVVM**
 - MVC menggunakan Controller sebagai penghubung antara Model dan View. MVT menggunakan View untuk menerima http request dan mengembalikan HTTP  
