@@ -196,14 +196,14 @@ Saya menggunakan perintah tersebut, karena saya menjalankannya di windows.
 
 ![MVT architecture](https://github.com/AtharAdista/game-sthar/blob/main/Model.png)
 
- + User akan menuliskan sesuatu di browser
- + Klien(browser) mengirim permintaan HTTP ke Django
+ + User akan menuliskan sesuatu di browser.
+ + Klien(browser) mengirim permintaan HTTP ke Django.
  + Django menerima permintaan dan menyampaikannya ke 
-   `urls.py`
- + `urls.py` akan mengarahkan request ke View sesuai url yang diterima
- + View dapat berinteraksi dengan model yang merupakan komponen yang bertanggung jawab terhadap database
- + Setelah mendapatkan data dari model, maka View akan merender Template HTML dan diisi dengan data yang sesuai
- + View akan menghasilkan respons HTTP dan dikirimkan kembali ke klien
+   `urls.py`.
+ + `urls.py` akan mengarahkan request ke View sesuai url yang diterima.
+ + View dapat berinteraksi dengan model yang merupakan komponen yang bertanggung jawab terhadap database.
+ + Setelah mendapatkan data dari model, maka View akan merender Template HTML dan diisi dengan data yang sesuai.
+ + View akan menghasilkan respons HTTP dan dikirimkan kembali ke klien.
  + Klien menerima respon dan menampilkan halaman web atau data yang diberikan.
  + Klien (browser) menampilkan halaman atau data kepada pengguna.
 
