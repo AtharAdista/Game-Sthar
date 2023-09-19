@@ -1,20 +1,54 @@
-<h1>Game Sthar</h1>
+{% extends 'base.html' %}
 
-<h5>Name: </h5>
-<p>{{ name }}</p>
-<h5>Class: </h5>
-<p>{{ class }}</p>
+{% block content %}
+<style>
+    td, tr, th, table {
+        border: 2px solid black;
+    }
+</style>
 
-<h4>Game: </h4>
-<p>{{ game }}</p>
-<h4>Amount: </h4>
-<p>{{ amount }}</p>
-<h4>Price: </h4>
-<p>Rp.{{ price }}</p>
-<h4>Category: </h4>
-<p>{{ category }}</p>
-<h4>Platform: </h4>
-<p>{{ platform }}</p>
-<h4>Description: </h4>
-<p>{{ description }}</p>
+    <h1>Game Sthar</h1>
 
+    <h5>Name: </h5>
+    <p>{{ name }}</p>
+    <h5>Class: </h5>
+    <p>{{ class }}</p>
+
+    <br/>
+
+    <p><b>Kamu Menyimpan {{ jumlah_item }} item dalam aplikasi ini</b></p>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Platform</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Date Added</th>
+        </tr>
+
+        {% comment %} Menampilkan data produk {% endcomment %}
+
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category}}</td>
+                <td>{{ product.platform }}</td>
+                <td>{{ product.amount }}</td>
+                <td>{{ product.price}}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.data_added }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <br />
+
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
+
+{% endblock content %}

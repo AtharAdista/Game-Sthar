@@ -1,11 +1,19 @@
-# PBP
+# PBP A
 
 ## GameSthar
 ### Nama : Shaquille Athar Adista
 ### NPM  : 2206081875
-### Link Adaptable : https://gamesthar.adaptable.app/main (Got Disabled :< )
+### Link : https://gamesthar.adaptable.app/main (Got Disabled :< )
+
 ---
-## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
+## Tugas
+
+<details>
+  <summary> 
+     WEEK 01
+  </summary>
+
+  ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
 
 **Membuat sebuah proyek Django baru**
 
@@ -261,3 +269,246 @@ Sumber :
 + https://www.niagahoster.co.id/blog/mvc-adalah/
 + https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/
 + https://revou.co/kosakata/mvvm
+
+</details>
+
+<details>
+<summary>WEEK 02</summary>
+
+## 1. Apa perbedaan antara form POST dan form GET dalam Django?
+
+### Form POST 
+ Form POST digunakan untuk menambahkan data baru (mengirim data dari formulir html)kedalam database atau ke server django. Metode POST digunakan untuk mengubah status sistem (mengubah database misalnya). POST method menambahkan form-data ke tubuh http resuest sehingga data tidak terlihat di URL. Data yang dikirim dengan metode POST melewati header HTTP sehingga keamanan bergantung pada protokol HTTP. Metode ini sedikit lebih aman dariapada metode GET karena parameternya tidak disimpan dalam riwayat browser atau log server web.
+
+### Form GET
+Form GET digunakan untuk mengirim permintaan request ke server tertentu untuk mendapatkan data yang ada di database tanpa mengubah nilai apapun. Request Paramater dari method GET ditambahkan ke URL. GET request lebih baik tidak digunakan untuk informasi yang sensitive karena request dari GET terlihat di URL sehingga dapat membahayakan keamanan.
+
+## 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+JSON dan XML sama-sama teknologi yang digunakan untuk merepresentasikan data dalam format yang dapat dipahami oleh manusia dan tidak bergantung dengan bahasa komputer apapun. Sedangkan HTML adalah bahasa markup standar untuk pembuatan halaman web. Ini memungkinkan pembuatan dan struktur bagian, paragraf, dan tautan menggunakan elemen HTML (blok penyusun halaman web) seperti tag dan atribut, dalam konteks pengiriman data, HTML merupakan tempat kita mengirim data dengan menggunakan tag `<form></form>` dan kemudian data tersebut akan disimpan dalam format JSON atau XML, HTML juga dapat merender(menampilkan) data yang telah ada di server ke browser yang kita gunakan. Perbedaan JSON dengan XML adalah data yang disimpan dengan format XML lebih mudah dipahami oleh pemula, daripada data dengan format JSON. Data dalam XML menggunakan format tag dengan elemen dalam angle brackets (`<tag>nilai<tag>`), sedangkan JSON menggunakan format key dan value (`{"key":"value"}`). XML tidak dapat menggunakan array, sedangkan JSON dapat menggunakan array. JSON dianggap lebih efisien dalam hal ukuran pengolahan data web daripada XML karena secara umum ukuran dari JSON lebih kecil daripada XML. JSON berasal dari javascript, sedangkan XML berasal dari SGML. Jadi berdasarkan pernyataan diatas perbedaan utama yang dapat terlihat antara JSON dan XML adalah perbedaan dalam penyajian datanya. Sedangkan perbedaan antara JSON, XML, dan HTML adalah JSON dan XML merupakan format penyimpanan data, sedangkan HTML dapat digunakan untuk menampilkan data tersebut ke browser.
+
+## 3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+  Ada beberapa alasan mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern
+  - JSON self-describing, JSON sintaksnya sangat jelas dan dapat dipahami dengan mudah oleh manusia. Data dalam JSON memiliki format `{ 'key' : 'value'}`, sehingga sangat jelas. Selain mudah dipahami oleh manusia, JSON juga mudah dipahami oleh komputer.
+  - JSON lebih efisien (ukuran data JSON umunya lebih kecil daripada ukuran data XML)
+  - JSON dapat digunakan untuk lintas platform.
+  - penguraian server mudah dilakukan dalam format JSON.
+  - JSON dapat digunakan dalam berbagai bahasa pemrograman.
+  - JSON sangat populer, sehingga banyak layanan web dan API yang menyediakan format JSON.
+
+## 4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+**Membuat input `form` untuk menambahkan objek model pada app sebelumnya.**
++ Buat kerangka views terlebih dahulu dengan membuat folder `templates` pada root membuat berkas `base.html`. Berkas `base.html` akan digunakan sebagai kerangkan umum untuk halaman web lainnya.
++ Setelah selesai membuat kerangka views, kemudian saya membuat berkas baru pada folder `main` dengan nama `forms.py`. Kemudian saya menambahkan kode berikut di dalam `forms.py`
+
+
+  ```
+  from django.forms import ModelForm
+  from main.models import Product
+
+  class ProductForm(ModelForm):
+      class Meta:
+          model = Product
+          fields = ["name", "category", "platform", "amount" ,"price", "description"]
+  ```
+
++ Kemudian saya membuat `views.py` yang ada di folder `main` dan menambahkan beberapa import dan saya juga membuat fungsi baru dalam file `view.py` dan mengubah fungsi `show_main` yang ada di `views.py`
+   
+  ```
+  def show_main(request):
+    products = Product.objects.all()
+    jumlah_item = Product.objects.count()
+    context = {
+        'name' : 'Shaquille Athar Adista',
+        'class' : 'PBP A',
+        'jumlah_item' : jumlah_item,
+        'products': products
+
+
+    }
+
+    return render(request, "main.html", context)
+
+  def create_product(request):
+      form = ProductForm(request.POST or None)
+
+      if form.is_valid() and request.method == "POST":
+          form.save()
+          return HttpResponseRedirect(reverse('main:show_main'))
+      
+      context = {'form': form}
+      return render(request, "create_product.html", context)
+
+  ```
++ Kemudian saya membuka `urls.py` yang ada di folder `main` dan import fungsi `create_product` dan saya menambahkan <i>path url</i> ke dalam `urlpattern` pada `urls.py` di `main` untuk mengakses fungsi yang diimport tadi.
+
+  ```
+  from main.views import show_main, create_product
+  ```
+  ```
+  path('create-product', create_product, name='create_product'),
+  ```
+
++ Kemudian saya membuat berkas HTML baru dengan nama `create_product.html` pada folder `main/temlate`. Isi dari file tersebut adalah sebagai berikut.
+  ```
+  {% extends 'base.html' %}
+
+  {% block content %}
+  <h1>Add New Product</h1>
+
+  <form method="POST">
+      {% csrf_token %}
+      <table>
+          {{ form.as_table }}
+          <tr>
+              <td></td>
+              <td>
+                  <input type="submit" value="Add Product"/>
+              </td>
+          </tr>
+      </table>
+  </form>
+
+  {% endblock %}
+  ```
++ Kemudian pada berkas `main.html` saya tambahkan kode berikut dalam `{% block content %}`.
+  ```
+      <table>
+          <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Platform</th>
+              <th>Amount</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Date Added</th>
+          </tr>
+
+          {% comment %} Menampilkan data produk {% endcomment %}
+
+          {% for product in products %}
+              <tr>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.category}}</td>
+                  <td>{{ product.platform }}</td>
+                  <td>{{ product.amount }}</td>
+                  <td>{{ product.price}}</td>
+                  <td>{{ product.description }}</td>
+                  <td>{{ product.data_added }}</td>
+              </tr>
+          {% endfor %}
+      </table>
+
+      <br />
+
+      <a href="{% url 'main:create_product' %}">
+          <button>
+              Add New Product
+          </button>
+      </a>
+
+  {% endblock content %}
+
+  ``` 
+<br/>
+
+**Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.**
++ Untuk mengembalikan data dalam html saya menggunakan fungsi `show_main` yang ada didalam file `views.py` yang ada di `main`.
+
+  ```
+  # file views.main
+
+  def show_main(request):
+    products = Product.objects.all()
+    jumlah_item = Product.objects.count()
+    context = {
+        'name' : 'Shaquille Athar Adista',
+        'class' : 'PBP A',
+        'jumlah_item' : jumlah_item,
+        'products': products
+
+
+    }
+
+    return render(request, "main.html", context)
+  ```
+
++ Untuk mengembalikan data dalam XML saya menggunakan fungsi `show_xml` yang ada didalam file `views.py` yang ada di `main`.
+  
+  ```
+  def show_xml(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type = "application/xml")
+
+  ```
+
++ Untuk mengembalikan data dalam JSON saya menggunakan fungsi `show_json` yang ada didalam file `views.py` yang ada di `main`.
+  
+  ```
+  def show_json(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("json" data), content_type = "application/json")
+
+  ```
+
++ Untuk mengembalikan data dalam XML dengan memanfaatkan ID saya menggunakan fungsi `show_xml_by_id` yang ada didalam file `views.py` yang ada di `main`.
+  
+  ```
+  def show_xml_by_id(request,id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type = "application/xml")
+  ```
+
++ Untuk mengembalikan data dalam JSON dengan memanfaatkan ID saya menggunakan fungsi `show_json_by_id` yang ada didalam file `views.py` yang ada di `main`.
+  
+  ```
+  def show_json_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type= "application/json")
+  ```
+
+**Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.**
++ Saya mengimpor fungsi yang telah saya buat tadi dalam file `views.py` ke dalam file `urls.py` yang ada di `main`, kemudian saya menambahkan <i>path url</i> ke dalam `urlpatterns` untuk mengakses fungsi yang sudah saya impor tadi.
+  
+  ```
+  from django.urls import path
+  from main.views import show_main, create_product, show_xml,show_json, show_xml_by_id, show_json_by_id
+
+  app_name = 'main'
+
+  urlpatterns = [
+      path('', show_main, name='show_main'),
+      path('create-product', create_product, name='create_product'),
+      path("xml/", show_xml, name='show_xml'),
+      path("json/", show_json, name='show_json'),
+      path("xml/<int:id>", show_xml_by_id, name="show_xml_by_id"),
+      path("json/<int:id>", show_json_by_id, name="show_jason_by_id"),
+  ]
+  ```
+  **Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.**
+
+  ![postman_html](img/postman_html.png)
+
+  ![postman_xml](img/postman_xml.png)
+
+  ![postman_json](img/postman_json.png)
+
+  ![postman_xml_id](img/postman_xml_id.png)
+
+  ![postman_json_id](img/postman_json_id.png)
+
+
+  ## BONUS
+  **Kamu akan mendapatkan nilai bonus pada penilaian tugas ini apabila kamu membuat fitur berikut**
+
+  + [x] Menambahkan pesan "Kamu menyimpan X item pada aplikasi ini" (dengan X adalah jumlah data item yang tersimpan pada aplikasi) dan menampilkannya di atas tabel data. Kalimat pesan boleh dikustomisasi sesuai dengan tema aplikasi, namun harus memiliki makna yang sama.
+
+   ![Bonus Week 2](img/bonus_week02.png)
+
+
+
+
+
+
+</details> 
+
