@@ -10,7 +10,7 @@
 
 <details>
   <summary> 
-     WEEK 01
+     WEEK 02
   </summary>
 
   ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
@@ -273,15 +273,15 @@ Sumber :
 </details>
 
 <details>
-<summary>WEEK 02</summary>
+<summary>WEEK 03</summary>
 
 ## 1. Apa perbedaan antara form POST dan form GET dalam Django?
 
 ### Form POST 
- Form POST digunakan untuk menambahkan data baru (mengirim data dari formulir html)kedalam database atau ke server django. Metode POST digunakan untuk mengubah status sistem (mengubah database misalnya). POST method menambahkan form-data ke tubuh http resuest sehingga data tidak terlihat di URL. Data yang dikirim dengan metode POST melewati header HTTP sehingga keamanan bergantung pada protokol HTTP. Metode ini sedikit lebih aman dariapada metode GET karena parameternya tidak disimpan dalam riwayat browser atau log server web.
+ Form POST digunakan untuk menambahkan data baru (mengirim data dari formulir html) kedalam database. Form POST akan dikirimkan ke server dan kemudian akan menerima respons balik. Metode POST digunakan untuk mengubah status sistem (mengubah database misalnya). POST method menambahkan form-data ke tubuh http resuest sehingga data tidak terlihat di URL. Data yang dikirim dengan metode POST melewati header HTTP sehingga keamanan bergantung pada protokol HTTP. Metode ini sedikit lebih aman dariapada metode GET karena parameternya tidak disimpan dalam riwayat browser atau log server web.
 
 ### Form GET
-Form GET digunakan untuk mengirim permintaan request ke server tertentu untuk mendapatkan data yang ada di database tanpa mengubah nilai apapun. Request Paramater dari method GET ditambahkan ke URL. GET request lebih baik tidak digunakan untuk informasi yang sensitive karena request dari GET terlihat di URL sehingga dapat membahayakan keamanan.
+Form GET digunakan untuk mengirim permintaan request ke server tertentu untuk mendapatkan data yang ada di database. Request Paramater dari method GET ditambahkan ke URL. GET request lebih baik tidak digunakan untuk informasi yang sensitive karena request dari GET terlihat di URL sehingga dapat membahayakan keamanan.
 
 ## 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
 JSON dan XML sama-sama teknologi yang digunakan untuk merepresentasikan data dalam format yang dapat dipahami oleh manusia dan tidak bergantung dengan bahasa komputer apapun. Sedangkan HTML adalah bahasa markup standar untuk pembuatan halaman web. Ini memungkinkan pembuatan dan struktur bagian, paragraf, dan tautan menggunakan elemen HTML (blok penyusun halaman web) seperti tag dan atribut, dalam konteks pengiriman data, HTML merupakan tempat kita mengirim data dengan menggunakan tag `<form></form>` dan kemudian data tersebut akan disimpan dalam format JSON atau XML, HTML juga dapat merender(menampilkan) data yang telah ada di server ke browser yang kita gunakan. Perbedaan JSON dengan XML adalah data yang disimpan dengan format XML lebih mudah dipahami oleh pemula, daripada data dengan format JSON. Data dalam XML menggunakan format tag dengan elemen dalam angle brackets (`<tag>nilai<tag>`), sedangkan JSON menggunakan format key dan value (`{"key":"value"}`). XML tidak dapat menggunakan array, sedangkan JSON dapat menggunakan array. JSON dianggap lebih efisien dalam hal ukuran pengolahan data web daripada XML karena secara umum ukuran dari JSON lebih kecil daripada XML. JSON berasal dari javascript, sedangkan XML berasal dari SGML. Jadi berdasarkan pernyataan diatas perbedaan utama yang dapat terlihat antara JSON dan XML adalah perbedaan dalam penyajian datanya. Sedangkan perbedaan antara JSON, XML, dan HTML adalah JSON dan XML merupakan format penyimpanan data, sedangkan HTML dapat digunakan untuk menampilkan data tersebut ke browser.
