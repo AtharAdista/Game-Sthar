@@ -538,7 +538,10 @@ Cookie adalah istilah untuk kumpulan informasi yang berisi rekam jejak dan aktiv
 Django menyediakan method bawaan untuk mengelola cookie, kita dapat set cookie di Django dengan menggunakan method `set_cookie()`, setelah itu kita dapat menggunakan method `request.COOKIES` untuk mengakses cookies yang dikirimkan web browser, kita juga dapat mengakses cookie dengan key, yaitu dengan menggunakan method `request.COOKIES['name_cookie']`, cookie yang di akses tadi dapat kita tambahkan sebagai informasi mengenai cookie kita ketika login, ketika user melakukan logout maka kita dapat menghapus data cookie tadi dengan method `delete_cookie()`.
 
 ## 4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
-Dalam kondisi normal, cookie aman, namun ada beberapa risiko yang harus diwaspadai, seperti pencurian cookie, dll
+Dalam kondisi normal, cookies tidak bisa mentransfer malware atau virus karena data yang dibawa cookies tidak berubah ketika berpindah dari komputer ke website dan sebaliknya. Perpindahan data cookies ini sama sekali tidak berpengaruh kepada komputer kita. Tapi kita harus hati-hati, kita harus menghindari untuk mengunjungi situs-situs yang mencurigakan dan berpotensi bahaya agar informasi di cookies kita tidak dicuri oleh oknum-oknum tidak bertanggung jawab. Selain itu, jika tidak dikelola dengan baik, maka cookie dapat dicuri oleh hacker dan disalahgunakan. Contoh celah keamanan yang dapat mencuri cookie adalah sebagai berikut.
+  1. XSS --> Menyisipkan kode Javascript untuk mencuri cookie
+  2. adversary-in-the-Middle --> Dalam phishing AiTM, penyerang menyebarkan server proxy antara pengguna target dan situs web yang ingin dikunjungi pengguna (yaitu, situs yang ingin ditiru oleh penyerang). Pengaturan seperti itu memungkinkan penyerang mencuri dan mencegat kata sandi target dan cookie sesi yang membuktikan sesi mereka yang sedang berlangsung dan diautentikasi dengan situs web.
+   
 
 
 ## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
@@ -734,6 +737,12 @@ Dalam kondisi normal, cookie aman, namun ada beberapa risiko yang harus diwaspad
 + [x] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
   + Melakukan register dua kali untuk membuat dua akun pengguna
   + Melakukan login dengan masing-masing akun pengguna dan add tiga data untuk setiap akun.
+  
+  **Akun pertama**
+  ![first account](img/FirstAccount.png)
+
+  **Akun kedua**
+  ![second account](img/SecondAccount.png)
 + [x] Menghubungkan model Item dengan User.
   + Pada `models.py` yang ada di folder `main` tambahkan kode berikut.
     ```

@@ -1,30 +1,26 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from django.urls import reverse
 from main.forms import ProductForm
+from django.urls import reverse
 from main.models import Product
 from django.core import serializers
-from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
 import datetime
+
 
 # Create your views here.
 @login_required(login_url='/login')
 def show_main(request):
     products = Product.objects.filter(user=request.user)
-    jumlah_item = products.count()
+
     context = {
-        'name' : request.user.username,
-        'class' : 'PBP A',
-        'jumlah_item' : jumlah_item,
+        'name': request.user.username, # Nama kamu
+        'class': 'PBP A', # Kelas PBP kamu
         'products': products,
         'last_login': request.COOKIES['last_login'],
-
     }
 
     return render(request, "main.html", context)
@@ -37,13 +33,13 @@ def create_product(request):
         product.user = request.user
         product.save()
         return HttpResponseRedirect(reverse('main:show_main'))
-    
+
     context = {'form': form}
     return render(request, "create_product.html", context)
 
 def show_xml(request):
     data = Product.objects.all()
-    return HttpResponse(serializers.serialize("xml", data), content_type = "application/xml")
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json(request):
     data = Product.objects.all()
@@ -51,11 +47,11 @@ def show_json(request):
 
 def show_xml_by_id(request,id):
     data = Product.objects.filter(pk=id)
-    return HttpResponse(serializers.serialize("xml", data), content_type = "application/xml")
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
-def show_json_by_id(request, id):
+def show_json_by_id(request,id):
     data = Product.objects.filter(pk=id)
-    return HttpResponse(serializers.serialize("json", data), content_type= "application/json")
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def register(request):
     form = UserCreationForm()
@@ -66,7 +62,6 @@ def register(request):
             form.save()
             messages.success(request, 'Your account has been successfully created!')
             return redirect('main:login')
-    
     context = {'form':form}
     return render(request, 'register.html', context)
 
@@ -89,7 +84,7 @@ def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
-    return redirect('main:login')
+    return response
 
 def delete_data(request, id):
     data = Product.objects.get(pk=id)
