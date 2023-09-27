@@ -5,6 +5,44 @@
     td, tr, th, table {
         border: 2px solid black;
     }
+
+    .plus-button {
+    
+    background-color: white; 
+    color: black; 
+    font-size: 16px; 
+    border: none; 
+    cursor: pointer; 
+    text-align: center;
+    margin-left: 5px;
+    border-radius: 5px; 
+    }
+
+    .delete-button{
+        color: white;
+        cursor: pointer;
+        background-color: #f44336;
+        text-align: center;
+        border: none;
+        padding: 4px;
+        border-radius: 5px;
+    }
+
+    .delete-button:hover {
+        background-color: #d32f2f; /* Warna latar belakang saat dihover */
+    }
+
+    .minus-button{
+    background-color: white; 
+    color: black; 
+    font-size: 16px; 
+    border: none; 
+    cursor: pointer; 
+    text-align: center;
+    margin-right: 5px;
+    border-radius: 5px; 
+    }
+    
 </style>
 
     <h1>Game Sthar</h1>
@@ -35,10 +73,11 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.category}}</td>
                 <td>{{ product.platform }}</td>
-                <td>{{ product.amount }}</td>
+                <td> <a href="{% url 'main:decrease_amount' product.id %}"><button class ="minus-button">-</button></a> {{product.amount}} <a href="{% url 'main:increase_amount' product.id %}"><button class="plus-button">+</button></a></td>
                 <td>{{ product.price}}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.data_added }}</td>
+                <td><a href="{% url 'main:delete_data' product.id %} "><button class="delete-button">Delete</button></a></td>
             </tr>
         {% endfor %}
     </table>
@@ -51,4 +90,11 @@
         </button>
     </a>
 
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
+        </button>
+    </a>
+
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
 {% endblock content %}
