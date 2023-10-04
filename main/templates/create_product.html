@@ -1,9 +1,9 @@
 {% extends 'base.html' %} 
 
 {% block content %}
-<h1>Add New Product</h1>
+<!-- <h1 class="bg-slate-100">Add New Game</h1> -->
 
-<form method="POST">
+<!-- <form method="POST">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
@@ -14,6 +14,39 @@
             </td>
         </tr>
     </table>
-</form>
+</form> -->
+<!-- 
+<form method="POST">
+    {% csrf_token %}
+    <h1>New Game</h1>
+    <div>
+        {{ form.name }}
+        {{ form.category }}
+        {{ form.platform }}
+        {{ form.amount }}
+        {{ form.price }}
+        {{ form.description }}
+    </div>
+
+        <input type="submit" value="Add Product"/>
+
+</form> -->
+
+<div class="min-h-screen bg-gray-100 text-gray-800 antialiased px-4 py-6 flex flex-col flex-wrap justify-center sm:py-12">
+    <div class="relative py-2 sm:max-w-xl mx-auto text-center">
+        <span class="text-2xl font-light">Add New Game</span>
+        <div class="relative mt-4 bg-white shadow-md sm:rounded-lg text-left sm:mt-4">
+            <div class="py-10 px-8">
+                <form method="POST" action=""> 
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <div class="flex justify-center">
+                        <button class="mt-5 bg-green-500 text-white py-2 px-20 rounded-lg hover:bg-green-600 " type="submit" value="Add Product">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
