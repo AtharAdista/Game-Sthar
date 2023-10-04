@@ -9,8 +9,8 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     data_added = models.DateField(auto_now_add=True)
     amount = models.IntegerField()
-    description = models.TextField()
+    description = models.TextField(max_length=400)
     price = models.IntegerField()
-    category = models.TextField()
-    platform = models.TextField()
+    category = models.TextField(max_length=255)
+    platform = models.TextField(max_length=255)
 
