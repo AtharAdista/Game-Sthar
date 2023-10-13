@@ -207,8 +207,8 @@
     }
 
     $("#button_add").click(function () {
-    addProduct(); // Menjalankan fungsi addProduct
-    $("#modal").css("display", "none"); // Menyembunyikan modal
+    addProduct(); 
+    $("#modal").css("display", "none"); 
     });
 
     $("#close_button").click(function() {
@@ -234,10 +234,9 @@
         }
 
     $(document).ready(function() {
-            // Ketika tombol "Show Modal" diklik
             $("#showPopUp").click(function() {
-                // Menampilkan modal
                 $("#modal").css("display", "block");
+                document.getElementById("form").reset();
             });
         });
     
