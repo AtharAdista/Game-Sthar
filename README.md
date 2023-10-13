@@ -1326,14 +1326,16 @@ AJAX adalah teknik dalam pengembangan web yang memungkinkan komunikasi antara br
 ## 4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
 
 **Fetch API**
- - API: Fetch API adalah API modern yang dirancang untuk menggantikan XMLHttpRequest. Dengan Fect API, developer dapat melakukan permintaan HTTP menggunakan fetch() method.
+ - Modern dan lebih ringan: Fetch API adalah API modern yang dirancang untuk menggantikan XMLHttpRequest. Fetch API adalah teknologi yang lebih baru dan lebih ringan daripada jQuery. Ini berarti aplikasi web yang memanfaatkan Fetch API akan memiliki ukuran yang lebih kecil dan waktu muat yang lebih cepat.
  - Promise-based: Fect API menggunakan Promises dan memiliki tampilan yang lebih bersih daripada pendekatan callback tradisional. Contohnya adalah penggunaan then() untuk menangani respons dan kesalahan. Selain itu, dengan promise maka kita dapat terhindari dari callback hell.
+ - Lebih Terfokus: Fetch API didesain khusus untuk pengambilan sumber daya dari jaringan, sehingga fokusnya lebih terbatas. Ini berarti Fetch API tidak memiliki fitur yang mungkin tidak diperlukan dalam pengembangan web, mengurangi kompleksitas.
 
 **jQuery**
-- Abstraksi: jQuery dirancang untuk membuat pengembangan web lebih mudah dengan mengabstraksikan banyak detail kompleksitas dari JavaScript murni. 
+- Abstraksi yang kuat: jQuery dirancang untuk membuat pengembangan web lebih mudah dengan mengabstraksikan banyak detail kompleksitas dari JavaScript murni. 
 - Cross-browser: jQuery menyediakan lapisan abstraksi yang mengatasi perbedaan perilaku browser, sehingga devepeloper tidak perlu khawatir tentang perbedaan browser.
+- Fitur banyak: Dikarenakan jQuery sudah jauh lebih lama muncul daripada Fect API, maka fitur yang disediakan jQuery jauh lebih banyak daripada fitur Fect API.
 
-Pemilihan dari penggunaan Fect API atau jQuery tergantung dari aplikasi web yang ingin kita buat, jika kita menginginkan sesuatu yang lebih modern, clean, ringan, dan mudah ketika mengelola format data, maka Fect API dapat menjadi pilihan. Namun, jika kita ingin sesuatu yang cepat, sederhana, cross-browser, dan memiliki banyak fitur tambahan, maka jQuery adalah pilihan yang baik.
+Pemilihan dari penggunaan Fect API atau jQuery tergantung dari aplikasi web yang ingin kita buat, jika kita menginginkan sesuatu yang lebih modern, clean, ringan, dan lebih terfokus pada pengambilan dan manajemen data dari server, serta ingin memanfaatkan konsep promise secara native, maka Fect API dapat menjadi pilihan. Namun, jika kita ingin sesuatu yang cepat, cross-browser, dan memiliki banyak fitur tambahan, maka jQuery adalah pilihan yang baik.
 
 ## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 + [x] Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
