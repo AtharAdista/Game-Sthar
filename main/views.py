@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from main.forms import ProductForm
 from main.signupforms import SignUpForm
 from django.urls import reverse
@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
 import datetime
 
 
@@ -39,6 +40,39 @@ def create_product(request):
 
     context = {'form': form}
     return render(request, "create_product.html", context)
+
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        category = request.POST.get("category")
+        platform = request.POST.get("platform")
+        amount = request.POST.get("amount")
+        user = request.user
+
+        new_product = Product(name=name, price=price, description=description, category=category, platform=platform, amount=amount, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+    
+    return HttpResponseNotFound()
+
+@csrf_exempt
+def delete_product_ajax(request,id):
+    if request.method == "DELETE":
+        item = Product.objects.get(pk = id)
+        item.delete()
+
+        return HttpResponse(b"DELETED", status=201)
+    
+    return HttpResponseNotFound()
+        
+
+def get_product_json(request):
+    product_item = Product.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
 
 def show_xml(request):
     data = Product.objects.all()
@@ -98,7 +132,7 @@ def increase_amount(requet, id):
     data = Product.objects.get(pk=id)
     data.amount += 1
     data.save()
-    return redirect('main:show_main')
+    return HttpResponse(b"UPDATE", status=201)
 
 def decrease_amount(request,id):
     data = Product.objects.get(pk=id)
@@ -107,4 +141,4 @@ def decrease_amount(request,id):
     else:
         data.amount = 0
     data.save()
-    return redirect('main:show_main')
+    return HttpResponse(b"UPDATE", status=201)
