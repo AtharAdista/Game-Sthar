@@ -10,7 +10,7 @@
 
 <details>
   <summary> 
-     WEEK 02
+     WEEK 02 : Implementasi Model-View-Template (MVT) pada Django
   </summary>
 
   ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
@@ -273,7 +273,7 @@ Sumber :
 </details>
 
 <details>
-<summary>WEEK 03</summary>
+<summary>WEEK 03: : Implementasi Form dan Data Delivery pada Django</summary>
 
 ## 1. Apa perbedaan antara form POST dan form GET dalam Django?
 
@@ -513,7 +513,7 @@ JSON dan XML sama-sama teknologi yang digunakan untuk merepresentasikan data dal
 </details> 
 
 <details>
-<summary>WEEK 04</summary>
+<summary>WEEK 04: Implementasi Autentikasi, Session, dan Cookies pada Django</summary>
 
 ## 1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
 Django UserCreationForm adalah salah satu form yang disediakan oleh Django dan digunakan untuk membuat user baru, UserCreationForm defaultnya berisi username, password, dan password konfirmasi.
@@ -1292,4 +1292,231 @@ Tailwind dan Bootstrap sama-sama merupakan framework yang dapat mempermudah kita
             {% endblock content %}
 
             ```
+</details>
+
+<details>
+<summary>WEEK 06: JavaScript dan Asynchronous JavaScript</summary>
+
+## 1.Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+**Synchronous programming**
+synchronous programming adalah proses pengeksekusian kode yang dijalankan secara berurutan berdasarkan kode yang tertulis, ketika suatu tugas sedang berjalan, maka tugas selanjutnya harus menunggu sampai tugas yang dijalankan tadi selesai. Synchronous programming biasanya dipakai ketika menjalnakan suatu tugas-tugas yang sederhana.
+
+**Asynchronous programming**
+Asynchronous programming adalah proses pengeksekusian kode yang tidak sesuai dengan urutan yang ada atau bisa disebut menjalankan perintah selanjutnya tanpa menunggu perintah sebelumnya selesai. Cocok digunakan ketika ingin melakukan operasi I/O, untuk melakukan kinerja tugas yang tinggi, dan di aplikasi yang berskala besar.
+
+
+## 2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+Paradigma event-driven programming adalah pendekatan di mana alur eksekusi program berdasarkan event yang terjadi. Dalam event-driven programming, konsep kerjanya bergantung dari kejadian atau event tertentu misal input mouse atua input keyboard. Salah satu contoh penerapan dari event-driven di tugas ini adalah `click`, pada `click` kita akan melakukan tugas yang ditentukan ketika kita melakukan `click` pada suatu tombol, sebelum tombol dapat bekerja, kita harus terlebih dahulu memberika `eventListener` berupa perintah `click` agar tombol dapat berfungsi ketika di `click`, nantinya tombol yang kita `click` akan melakukan tugas sesuai dengan program yang diberikan kepada tombol tersebut.
+
+```
+    $(document).ready(function() {
+            $("#showPopUp").click(function() {
+                $("#modal").css("display", "block");
+            });
+        });
+```
+
+pada kode di atas kita memberikan event `click` kepada button yang memiliki id `showPopUp` agar ketika buttonnya di tekan akan memberikan display block kepada tag yang memiliki id `modal`.
+
+
+## 3. Jelaskan penerapan asynchronous programming pada AJAX.
+AJAX adalah teknik dalam pengembangan web yang memungkinkan komunikasi antara browser dan server secara asinkron. Hal ini memungkinkan web untuk mengirim permintaan ke server tanpa harus melakukan refresh keseluruhan page. Dalam AJAX, asynchronous programming digunakan untuk mengirim permintaan ke server, menerima respons, dan mengambil tindakan berdasarkan respons tersebut tanpa menghalangi eksekusi kode JavaScript lainnya. Biasanya AJAX digunakan untuk melakukan permintaan data (request) dan menangani sebuah tanggapan (handling response), baik response dalam bentuk XML, Javascript ataupun JSON dari sebuah Rest API. Teknik pengiriman HTTP dengan AJAX dapat memanfaatkan Fect API, jQuey, atau XMLHttpRequest. Pada XMLHttpRequest kita masih memanfaatkan method callback untuk melakukan proses asynchronous, jika tidak melakukan dengan hati-hati metode callback dapat menyebabkan callback hell. Solusi untuk mengatasi callback hell adalah dengan menggunakan Fect API, hal ini dikarenakan pada Fect API kita menggunakan prinsip promise yang mana lebih efisien daripada prinsip calllback. Di AJAX juga terdapat async dan await, async diletakkan di awal fungsi yang membutuhkan await, fungsi dari await adalah untuk menunggu hingga operasi asynchronous selesai tanpa menghentikan eksekusi kode JavaScript lainnya. Ini memastikan bahwa kode di bawah await (dalam satu fungsi yang sama) hanya akan dijalankan setelah operasi asynchronous selesai.
+
+## 4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+**Fetch API**
+ - API: Fetch API adalah API modern yang dirancang untuk menggantikan XMLHttpRequest. Dengan Fect API, developer dapat melakukan permintaan HTTP menggunakan fetch() method.
+ - Promise-based: Fect API menggunakan Promises dan memiliki tampilan yang lebih bersih daripada pendekatan callback tradisional. Contohnya adalah penggunaan then() untuk menangani respons dan kesalahan. Selain itu, dengan promise maka kita dapat terhindari dari callback hell.
+
+**jQuery**
+- Abstraksi: jQuery dirancang untuk membuat pengembangan web lebih mudah dengan mengabstraksikan banyak detail kompleksitas dari JavaScript murni. 
+- Cross-browser: jQuery menyediakan lapisan abstraksi yang mengatasi perbedaan perilaku browser, sehingga devepeloper tidak perlu khawatir tentang perbedaan browser.
+
+Pemilihan dari penggunaan Fect API atau jQuery tergantung dari aplikasi web yang ingin kita buat, jika kita menginginkan sesuatu yang lebih modern, clean, ringan, dan mudah ketika mengelola format data, maka Fect API dapat menjadi pilihan. Namun, jika kita ingin sesuatu yang cepat, sederhana, cross-browser, dan memiliki banyak fitur tambahan, maka jQuery adalah pilihan yang baik.
+
+## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
++ [x] Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+
+  + [x] AJAX GET
+
+      1. Hapus card yang ada di `main.html` dan ubah menjadi berikut.
+          ```
+          <div id="product_table" class="flex flex-wrap justify-center py-5 px-4 grow-0"> </div>
+          ```
+
+      2. Buat fungsi baru pada `views.py` yang menerima paramater `request`
+          ```
+          def get_product_json(request):
+              product_item = Product.objects.filter(user=request.user)
+              return HttpResponse(serializers.serialize('json', product_item))
+          ```
+
+      3. Buka file `urls.py` pada folder `main` dan tambahkan fungsi tadi.
+          ```
+          ...
+          path('get-product/', get_product_json, name='get_product_json'),
+          ...
+          ```
+   
+      4. Buka file `main.html` dan tambahkan `script` agar dapat menghasilkan data product. `getProducts` berfungsi untuk mendapatkan data product yang ada dan `refreshProducts` berfungsi untuk menampilkan data kedalam bentuk html agar dapat ditampilkan oleh browser.
+          ```
+          async function getProducts() {
+              return fetch("{% url 'main:get_product_json' %}").then((res) => res.json());
+          }
+          
+          async function refreshProducts() {
+            document.getElementById("product_table").innerHTML = ""
+            const products = await getProducts()
+            let htmlString = ''
+            products.forEach((item) => {
+                htmlString += ` <div class=" px-2 flex flex-col bg-white rounded-lg shadow-md w-80 m-6 overflow-hidden w-80">
+            
+            <div class=" flex justify-between px-2 pt-4">
+                <h1 class="px-2 text-xl">${ item.fields.name }</h1> 
+                <button class="delete-button" onClick=deleteProduct(${item.pk})>Delete</button>
+            </div>
+            <div class="text-sm pl-2 pt-3">
+                <p>Amount :</p>
+                <div class=flex>
+                <button onClick=decreaseProduct(${item.pk}) class ="minus-button">-</button>
+                <p>${item.fields.amount}</p>
+                <button onClick=increaseProduct(${item.pk})  class="plus-button">+</button>
+                </div>
+            </div>
+            <p class="pt-3">${ item.fields.description } </p>
+          
+            <div class="pt-4 pb-6">
+                <p class="text-sm"><b>Category: </b>${ item.fields.category } </p>
+                <p class="text-sm"><b>Price: </b>${ item.fields.price } </p>
+            </div>
+          </div>` 
+          })
+          
+          document.getElementById("product_table").innerHTML = htmlString
+          }
+
+          refreshProducts()
+          ```
+      
+   
+
+   + [x] AJAX POST
+
+      1. buat fungsi di untuk add product dengan ajax di `views.py` dan import `csrf_exempt` pada `views.py`
+          ```
+          @csrf_exempt
+          def add_product_ajax(request):
+              if request.method == "POST":
+                  name = request.POST.get("name")
+                  price = request.POST.get("price")
+                  description = request.POST.get("description")
+                  category = request.POST.get("category")
+                  platform = request.POST.get("platform")
+                  amount = request.POST.get("amount")
+                  user = request.user
+
+                  new_product = Product(name=name, price=price, description=description, category=category, platform=platform, amount=amount, user=user)
+                  new_product.save()
+
+                  return HttpResponse(b"CREATED", status=201)
+              
+              return HttpResponseNotFound()
+          ```
+      2. buat routing di `urls.py`
+          ```
+          path('create-product-ajax/', add_product_ajax, name='add_product_ajax'),
+          ```
+      3. buat script untuk menambahkan data dengan ajax
+          ```
+           function addProduct() {
+              fetch("{% url 'main:add_product_ajax' %}", {
+                  method: "POST",
+                  body: new FormData(document.querySelector('#form'))
+              }).then(refreshProducts)
+
+              document.getElementById("form").reset()
+
+              return false
+          }
+          ```
+      4. buat form pop up untuk tempat mengisi data product yang ingin di tambahkan.
+          ```
+          <div class="hidden z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="modal">
+
+               <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+             
+               <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+
+                   <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                       <div class="relative py-2 sm:max-w-xl text-center">
+                           <span class="text-2xl font-light">Add New Game</span>
+                       <div class="relative bg-white shadow-md sm:rounded-lg text-left">
+                       <div class="py-10 px-8">
+                           <form id="form" onsubmit="return false;"> 
+                               {% csrf_token %}
+                               <div class="mb-3">
+                                   <label for="name" class="col-form-label">Name:</label>
+                                   <input type="text" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md" id="name" name="name"></input>
+                               </div>
+                               <div class="mb-3">
+                                   <label for="description" class="col-form-label">Description:</label>
+                                   <input type="text" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md" id="description" name="description"></input>
+                               </div>
+                               <div class="mb-3">
+                                   <label for="category" class="col-form-label">Category:</label>
+                                   <input type="text" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md" id="category" name="category"></input>
+                               </div>
+                               <div class="mb-3">
+                                   <label for="platform" class="col-form-label">Platform:</label>
+                                   <input type="text" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md" id="platform" name="platform"></input>
+                               </div>
+                               <div class="mb-3">
+                                   <label for="price" class="col-form-label">Amount:</label>
+                                   <input type="number" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md" id="amount" name="amount"></input>
+                               </div>
+                               <div class="mb-3">
+                                   <label for="price" class="col-form-label">Price:</label>
+                                   <input type="number" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md" id="price" name="price"></input>
+                               </div>
+                               <div class="modal-footer">
+                                   <button type="button" class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600" id="close_button"">Close</button>
+                                   <button type="button" class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600" id="button_add">Add Product</button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+          ```
+      5. buat script agar pop up dapat muncul ketika button di tekan, form kembali bersih ketika selesai mengisi data, dan ketika button `close` pada form pop up ditekan maka akan keluar dari form
+   
+          ```
+          $("#button_add").click(function () {
+            addProduct(); // Menjalankan fungsi addProduct
+            $("#modal").css("display", "none"); // Menyembunyikan modal
+            });
+
+            $("#close_button").click(function() {
+                $("#modal").css("display", "none");
+            })
+
+            $(document).ready(function() {
+              // Ketika tombol "Show Modal" diklik
+              $("#showPopUp").click(function() {
+                  // Menampilkan modal
+                  $("#modal").css("display", "block");
+              });
+          });
+          ```
+
+ + [x] Melakukan perintah collectstatic.
+      Tambahkan `static root` pada `setting.py` dan jalankan perintah `python manage.py collecstatic` untuk melakukan collectstatic
+      ```
+      STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+      ```
+
 </details>

@@ -188,6 +188,12 @@
     }
 
     refreshProducts()
+
+    async function deleteProduct(id){
+        await fetch (`delete-product-ajax/${id}`,{
+            method: "DELETE"
+        }).then(refreshProducts);
+    }
     
     function addProduct() {
         fetch("{% url 'main:add_product_ajax' %}", {
@@ -209,19 +215,23 @@
         $("#modal").css("display", "none");
     })
 
-    function deleteProduct(id){
-        fetch(`delete-product-ajax/${id}`,{
-            method: "DELETE"
+    async function increaseProduct(id){
+        let form = new FormData();
+        form.append("id", id);
+        await fetch("increase_amount/", {
+            method: "POST",
+            body: form,
         }).then(refreshProducts);
-    }
+        }
 
-    function increaseProduct(id){
-        fetch(`increase_amount/${id}`).then(refreshProducts);
-    }
-
-    function decreaseProduct(id){
-        fetch(`decrease_amount/${id}`).then(refreshProducts);
-    }
+    async function decreaseProduct(id){
+        let form = new FormData();
+        form.append("id", id);
+        await fetch("decrease_amount/", {
+            method: "POST",
+            body: form,
+        }).then(refreshProducts);
+        }
 
     $(document).ready(function() {
             // Ketika tombol "Show Modal" diklik
@@ -229,8 +239,6 @@
                 // Menampilkan modal
                 $("#modal").css("display", "block");
             });
-
-            // Ketika dokumen dimuat, kita akan menambahkan penanganan peristiwa untuk menutup modal jika klik di luar modal
         });
     
     </script>

@@ -128,17 +128,25 @@ def delete_data(request, id):
     data.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
 
-def increase_amount(requet, id):
-    data = Product.objects.get(pk=id)
-    data.amount += 1
-    data.save()
-    return HttpResponse(b"UPDATE", status=201)
+@csrf_exempt
+def increase_amount(request):
+    if request.method == "POST":
+        id_item= request.POST.get("id")
+        data = Product.objects.get(pk=id_item)
+        data.amount += 1
+        data.save()
+        return HttpResponse(b"POST", status=201)
+    return HttpResponseNotFound()
 
-def decrease_amount(request,id):
-    data = Product.objects.get(pk=id)
-    if (data.amount > 0):
-        data.amount -= 1
-    else:
-        data.amount = 0
-    data.save()
-    return HttpResponse(b"UPDATE", status=201)
+@csrf_exempt
+def decrease_amount(request):
+    if request.method == "POST":
+        id_item = request.POST.get("id")
+        data = Product.objects.get(pk=id_item)
+        if (data.amount > 0):
+            data.amount -= 1
+        else:
+            data.amount = 0
+        data.save()
+        return HttpResponse(b"POST", status=201)
+    return HttpResponseNotFound()
