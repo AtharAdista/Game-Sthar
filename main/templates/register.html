@@ -17,10 +17,11 @@
         <form method="POST">
             {% csrf_token %}
                 {{ form.as_p }}
+            <div class="flex justify-center">
+                <button class="mt-5 bg-indigo-500 text-white py-2 px-20 rounded-lg hover:bg-indigo-600 " type="submit" name="submit">Register</button> <!-- for register -->
+            </div>
         </form>
-        <div class="flex justify-center">
-            <button class="mt-5 bg-indigo-500 text-white py-2 px-20 rounded-lg hover:bg-indigo-600 " type="submit" value="Login">Register</button>
-        </div>
+
 
 
     {% if messages %}
