@@ -1,2 +1,2 @@
 release: django-admin migrate --noinput
-web: gunicorn game_stharr.wsgi
+web: gunicorn game_sthar.wsgi
