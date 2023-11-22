@@ -16,7 +16,6 @@ import json
 
 # Create your views here.
 @login_required(login_url='/login')
-@csrf_exempt
 def show_main(request):
     products = Product.objects.filter(user=request.user)
     jumlah_item = products.count()
@@ -31,6 +30,7 @@ def show_main(request):
 
     return render(request, "main.html", context)
 
+@csrf_exempt
 def create_product(request):
     form = ProductForm(request.POST or None)
 
